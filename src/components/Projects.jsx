@@ -36,7 +36,7 @@ const projects = [
     result:
       "Esperienza utente eccellente su smartphone, visibilità internazionale e aumento delle prenotazioni da turisti.",
     tags: ["Mobile-First", "Multilingua", "Turismo"],
-    link: "al-posto-giusto.vercel.app",
+    link: "https://al-posto-giusto.vercel.app/",
   },
 ];
 
