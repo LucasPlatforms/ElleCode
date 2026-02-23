@@ -97,7 +97,7 @@ export default function Contact() {
                   href="mailto:info@tuodominio.it"
                   className="hover:text-white transition-colors"
                 >
-                  info@tuodominio.it
+                  info@ellecode.it
                 </a>
               </div>
 
@@ -128,7 +128,7 @@ export default function Contact() {
         {/* --- FOOTER --- */}
         <footer className="mt-16 text-center">
           <p className="text-zinc-500 text-sm">
-            Progetto supportato da TEMA Telecomunicazioni - P.IVA XXXXXXXX
+            Progetto supportato da TEMA Telecomunicazioni - P.IVA 09330850158
           </p>
           <p className="text-zinc-600 text-xs mt-2">
             © {new Date().getFullYear()} Tutti i diritti riservati

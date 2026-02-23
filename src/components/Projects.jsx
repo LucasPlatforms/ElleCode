@@ -24,7 +24,7 @@ const projects = [
     result:
       "Sito velocissimo con ottima visibilità sui motori di ricerca locali e aumento delle richieste di informazioni.",
     tags: ["Performance", "SEO Locale", "Lead Generation"],
-    link: "#",
+    link: "https://www.sevenhead.it/",
   },
   {
     name: "Al Posto Giusto",
@@ -32,11 +32,11 @@ const projects = [
     problem:
       "Bar in zona turistica necessitava di un sito multilingua perfetto su mobile per clienti internazionali.",
     solution:
-      "Creazione di un sito mobile-first multilingua (IT/ES/EN) con estrema attenzione alla velocità su dispositivi mobili e SEO internazionale.",
+      "Creazione di un sito mobile-first multilingua (EN/IT/ES/DE) con estrema attenzione alla velocità su dispositivi mobili e SEO internazionale.",
     result:
       "Esperienza utente eccellente su smartphone, visibilità internazionale e aumento delle prenotazioni da turisti.",
     tags: ["Mobile-First", "Multilingua", "Turismo"],
-    link: "#",
+    link: "al-posto-giusto.vercel.app",
   },
 ];
 
