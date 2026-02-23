@@ -12,6 +12,15 @@ export const metadata = {
   title: "Ellecode | Progettazione siti web",
   description: "Progettazione siti web",
   manifest: "/site.webmanifest",
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon.svg', type: 'image/svg+xml' } // Se usi il PNG, metti '/icon.png' e 'image/png'
+    ],
+    apple: [
+      { url: '/apple-icon.png' }
+    ],
+  },
 };
 
 export default function RootLayout({ children }) {
