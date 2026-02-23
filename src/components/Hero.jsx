@@ -14,15 +14,13 @@ export default function Hero() {
           </span>
         </div>
 
-        <h1 className="text-5xl md:text-7xl font-bold text-zinc-100 mb-6 leading-tight">
+        <h1 className="text-4xl md:text-7xl font-bold text-zinc-100 mb-6 leading-tight">
           La tua attività online con soluzioni web semplici e solide
           <span className="text-violet-500">.</span>
         </h1>
 
         <p className="text-xl md:text-2xl text-zinc-400 mb-12 max-w-3xl mx-auto leading-relaxed">
-          Siti web ad alte prestazioni con la massima trasparenza: prodotto
-          chiavi in mano, curato nei dettagli e senza costi nascosti o scadenze
-          dimenticate.
+          Soluzioni web chiavi in mano: prestazioni elevate, cura del dettaglio e gestione scadenze.
         </p>
 
         <Link

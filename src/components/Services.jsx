@@ -1,4 +1,4 @@
-import { Globe, Target, Sparkles } from "lucide-react";
+import { Globe, Target, Sparkles, Search, Code2, Gauge, Rocket } from "lucide-react";
 
 const services = [
   {
@@ -18,6 +18,29 @@ const services = [
     title: "Restyling Frontend",
     description:
       "Hai un sito che sente il peso degli anni? Ridisegnamo l'interfaccia visiva per renderlo moderno e in linea con i nuovi standard del web, migliorando l'esperienza utente.",
+  },
+];
+
+const workflowSteps = [
+  {
+    icon: Search,
+    title: 'Analisi & Strategia',
+    description: 'Capiamo le tue necessità e blocchiamo i contenuti. Nessun passo falso iniziale.',
+  },
+  {
+    icon: Code2,
+    title: 'Sviluppo & Anteprima',
+    description: 'Vedi il sito crescere in tempo reale su un link privato. Totale trasparenza.',
+  },
+  {
+    icon: Gauge,
+    title: 'Ottimizzazione & Test',
+    description: 'Velocità record, controllo SEO e test su ogni dispositivo mobile.',
+  },
+  {
+    icon: Rocket,
+    title: 'Lancio & Supporto',
+    description: 'Messa online e monitoraggio costante. Non ti lascio solo dopo la consegna.',
   },
 ];
 
@@ -61,6 +84,53 @@ export default function Services() {
             );
           })}
         </ul>
+      </div>
+
+      <header className="my-24 text-center">
+        <h2 className="text-3xl md:text-4xl font-bold text-zinc-100 mb-4">
+          Il metodo di lavoro<span className="text-violet-500">.</span>
+        </h2>
+        <p className="text-zinc-400 text-lg max-w-2xl mx-auto">
+          Tempi certi e zero sorprese. Gestisco il progetto in 4 step chiari per non farti perdere tempo.
+        </p>
+      </header>
+
+      <div className="max-w-6xl mx-auto relative">
+
+        <div
+          className="hidden md:block absolute top-8 left-[10%] right-[10%] h-[1px] bg-zinc-800"
+          aria-hidden="true"
+        />
+
+
+        <ol className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+          {workflowSteps.map((step, index) => {
+            const Icon = step.icon;
+            const stepNumber = index + 1;
+
+            return (
+              // 5. Ogni step diventa un elemento di lista <li>
+              <li key={step.title} className="relative group">
+                <div className="w-16 h-16 bg-zinc-950 border-2 border-zinc-800 rounded-2xl flex items-center justify-center mb-6 relative z-10 group-hover:border-violet-500 transition-colors mx-auto md:mx-0">
+                  <Icon className="text-zinc-400 group-hover:text-violet-400 transition-colors" size={24} aria-hidden="true" />
+
+                  {/* Il numeretto visivo dello step */}
+                  <div
+                    className="absolute -top-3 -right-3 w-6 h-6 bg-violet-600 text-white rounded-full flex items-center justify-center text-xs font-bold shadow-lg"
+                    aria-hidden="true"
+                  >
+                    {stepNumber}
+                  </div>
+                </div>
+
+                <div className="text-center md:text-left">
+                  <h3 className="text-xl font-bold text-zinc-100 mb-3">{step.title}</h3>
+                  <p className="text-zinc-400 text-sm leading-relaxed">{step.description}</p>
+                </div>
+              </li>
+            );
+          })}
+        </ol>
       </div>
     </section>
   );

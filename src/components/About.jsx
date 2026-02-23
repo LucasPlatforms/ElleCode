@@ -84,11 +84,11 @@ export default function About() {
               width={341}
               height={305}
               priority
-              className="h-150 w-auto hover:opacit-80 transition-opacity"
+              className="md:h-150 w-auto "
             />
           </div>
         </div>
-        <div className="pt-16 mt-16 border-t border-zinc-800/50">
+        <div className="md:pt-16 mt-16 md:border-t md:border-zinc-800/50">
           <h3 className="text-2xl font-bold text-zinc-100 mb-12 text-center md:text-left">
             Perché <span className="text-violet-500">Elle</span>Code?
           </h3>

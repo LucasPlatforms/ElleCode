@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
@@ -8,6 +8,8 @@ import Image from "next/image";
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const navRef = useRef(null);
 
   // Hook per intercettare lo scroll e cambiare lo sfondo della Navbar
   useEffect(() => {
@@ -18,20 +20,38 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      // Se il menu è aperto E il click NON è avvenuto dentro la Navbar (navRef)...
+      if (mobileMenuOpen && navRef.current && !navRef.current.contains(event.target)) {
+        setMobileMenuOpen(false); // ...chiudi il menu!
+      }
+    };
+
+    // Aggiungiamo l'ascoltatore di eventi solo quando il menu è aperto
+    if (mobileMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    // Pulizia dell'evento quando il componente si smonta o il menu si chiude
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [mobileMenuOpen]);
+
   // Funzione per chiudere il menu mobile quando l'utente clicca su una voce
   const handleLinkClick = () => {
     setMobileMenuOpen(false);
   };
 
   return (
-    <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-zinc-950/90 backdrop-blur-md border-zinc-800/50 py-4"
-          : "bg-transparent py-4"
-      }`}
+    <nav ref={navRef}
+      className={` fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled
+        ? "bg-zinc-950/90 backdrop-blur-md border-zinc-800/50 py-4"
+        : "bg-transparent py-8"
+        }`}
     >
-      <div className="max-w-6xl mx-auto px-6 flex justify-between items-center">
+      <div className="max-w-6xl mx-auto px-8 flex justify-between items-center">
         <Link
           href="/"
           aria-label="Torna all'inizio della pagina"
@@ -68,6 +88,12 @@ export default function Navbar() {
             Progetti
           </Link>
           <Link
+            href="#faq"
+            className="hover:text-zinc-100 transition-colors"
+          >
+            FAQ
+          </Link>
+          <Link
             href="#contatti"
             className="bg-violet-600/10 text-violet-500 hover:bg-violet-600 hover:text-white px-4 py-2 rounded-md transition-all duration-300"
           >
@@ -85,8 +111,14 @@ export default function Navbar() {
       </div>
 
       {/* MENU MOBILE: Sostituiti i bottoni e aggiunto l'onClick per chiudere la tendina */}
-      {mobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-zinc-900 border-b border-zinc-800 py-4 px-6 flex flex-col gap-4 shadow-xl">
+
+      <div
+        className={`md:hidden absolute top-full left-0 w-full bg-zinc-900 border-b border-zinc-800 px-6 shadow-xl transition-all duration-300 ease-in-out origin-top ${mobileMenuOpen
+            ? 'max-h-96 py-4 opacity-100 visible'
+            : 'max-h-0 py-0 opacity-0 invisible'
+          }`}
+      >
+        <div className="flex flex-col gap-4">
           <Link
             href="#chi-siamo"
             onClick={handleLinkClick}
@@ -109,6 +141,13 @@ export default function Navbar() {
             Progetti
           </Link>
           <Link
+            href="#faq"
+            onClick={handleLinkClick}
+            className="text-left text-zinc-300 py-2 border-b border-zinc-800"
+          >
+            FAQ
+          </Link>
+          <Link
             href="#contatti"
             onClick={handleLinkClick}
             className="text-left text-violet-400 py-2 font-medium"
@@ -116,7 +155,8 @@ export default function Navbar() {
             Contattami
           </Link>
         </div>
-      )}
+      </div>
+
     </nav>
   );
 }
