@@ -11,6 +11,7 @@ const inter = Inter({
 export const metadata = {
   title: "Ellecode | Progettazione siti web",
   description: "Progettazione siti web",
+  manifest: "/site.webmanifest",
 };
 
 export default function RootLayout({ children }) {

@@ -15,14 +15,14 @@ export default function Hero() {
         </div>
 
         <h1 className="text-5xl md:text-7xl font-bold text-zinc-100 mb-6 leading-tight">
-          Trasformo processi
-          <br />
-          in strumenti digitali<span className="text-violet-500">.</span>
+          La tua attività online con soluzioni web semplici e solide
+          <span className="text-violet-500">.</span>
         </h1>
 
         <p className="text-xl md:text-2xl text-zinc-400 mb-12 max-w-3xl mx-auto leading-relaxed">
-          Sviluppo siti web e portali B2B performanti per aziende che vogliono
-          risultati concreti, non fronzoli.
+          Siti web ad alte prestazioni con la massima trasparenza: prodotto
+          chiavi in mano, curato nei dettagli e senza costi nascosti o scadenze
+          dimenticate.
         </p>
 
         <Link

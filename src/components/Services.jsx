@@ -5,7 +5,7 @@ const services = [
     icon: Globe,
     title: "Siti Web Vetrina ad Alte Prestazioni",
     description:
-      "Progetto siti aziendali veloci e ottimizzati per i motori di ricerca. Perfetti per presentare la tua attività con un design moderno che funziona perfettamente su ogni smartphone.",
+      "Progettazione di siti veloci e ottimizzati per i motori di ricerca. Perfetti per presentare la tua attività con un design moderno che funziona perfettamente su ogni dispositivo.",
   },
   {
     icon: Target,
@@ -17,7 +17,7 @@ const services = [
     icon: Sparkles,
     title: "Restyling Frontend",
     description:
-      "Hai un sito che sente il peso degli anni? Ne ridisegno l'interfaccia visiva per renderlo moderno e in linea con i nuovi standard del web, migliorando l'esperienza utente.",
+      "Hai un sito che sente il peso degli anni? Ridisegnamo l'interfaccia visiva per renderlo moderno e in linea con i nuovi standard del web, migliorando l'esperienza utente.",
   },
 ];
 
@@ -30,8 +30,8 @@ export default function Services() {
             Servizi<span className="text-violet-500">.</span>
           </h2>
           <p className="text-xl text-zinc-400 max-w-2xl mx-auto">
-            Onesto e specifico. Niente promesse da venditore, solo quello che so
-            fare bene.
+            Strumenti digitali su misura, con focus su prestazioni e
+            affidabilità.
           </p>
         </header>
 

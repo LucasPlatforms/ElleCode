@@ -1,26 +1,42 @@
-import { Phone, Code, Target } from "lucide-react";
+import {
+  Zap,
+  TrendingUp,
+  CalendarCheck,
+  ShieldCheck,
+  Package,
+} from "lucide-react";
+import Image from "next/image";
 
 const features = [
   {
     id: 1,
-    icon: Phone,
-    title: "Background Telecomunicazioni",
-    description:
-      "Esperienza nel settore che conta: capisco processi aziendali e infrastrutture.",
+    icon: Zap,
+    title: "Velocità Record",
+    description: "Siti istantanei su ogni dispositivo.",
   },
   {
     id: 2,
-    icon: Code,
-    title: "Sviluppo Pragmatico",
-    description:
-      "Niente soluzioni esotiche. Tecnologie solide e collaudate per risultati certi.",
+    icon: TrendingUp,
+    title: "SEO al Massimo",
+    description: "Ottimizzati per scalare le ricerche Google.",
   },
   {
     id: 3,
-    icon: Target,
-    title: "Focus sui Risultati",
-    description:
-      "Il codice è un mezzo. L'obiettivo è far crescere il tuo business.",
+    icon: CalendarCheck,
+    title: "Scadenze Zero Pensieri",
+    description: "Gestisco io server, domini e rinnovi.",
+  },
+  {
+    id: 4,
+    icon: ShieldCheck,
+    title: "Monitoraggio 24/7",
+    description: "Controllo costante che tutto sia online.",
+  },
+  {
+    id: 5,
+    icon: Package,
+    title: "Tutto Incluso",
+    description: "Un pacchetto chiavi in mano e trasparente.",
   },
 ];
 
@@ -36,39 +52,66 @@ export default function About() {
 
             <div className="space-y-6 text-lg text-zinc-300 leading-relaxed">
               <p>
-                Vengo dal mondo delle telecomunicazioni. Ho visto come
-                funzionano davvero le aziende, con le loro sfide quotidiane e la
-                necessità di strumenti che funzionino subito.
+                Un'attività ha bisogno di strumenti solidi che risolvano
+                problemi reali: dalla gestione degli ordini alla visibilità su
+                Google, senza intoppi tecnici.
               </p>
               <p>
-                Non sono un "nerd in cameretta". Sono uno che capisce il tuo
-                business e lo trasforma in soluzioni digitali concrete. Zero
-                tecnicismi inutili, solo risultati.
-              </p>
-              <p>
-                Il mio punto di forza?{" "}
+                Il nostro valore aggiunto è la{" "}
                 <span className="text-violet-400 font-semibold">
-                  L'affidabilità
+                  capacità di ascolto
                 </span>
-                . Costruisco strumenti che funzionano, punto.
+                . Comprendiamo le dinamiche della tua attività e le trasformiamo
+                in soluzioni digitali concrete.
+              </p>
+              <p>
+                Il nostro punto di forza è l'
+                <span className="text-violet-400 font-semibold">
+                  affidabilità
+                </span>
+                . In un settore dove spesso è difficile ricevere assistenza
+                tempestiva, noi offriamo la sicurezza di un referente sempre
+                presente e pronto a intervenire. Costruiamo strumenti che
+                funzionano e restiamo al tuo fianco per assicurarci che
+                continuino a farlo.
               </p>
             </div>
           </div>
-
-          <div className="grid gap-6">
+          <div>
+            <Image
+              src="/about-img.svg"
+              alt="Illustrazione Sezione Chi Siamo"
+              width={341}
+              height={305}
+              priority
+              className="h-150 w-auto hover:opacit-80 transition-opacity"
+            />
+          </div>
+        </div>
+        <div className="pt-16 mt-16 border-t border-zinc-800/50">
+          <h3 className="text-2xl font-bold text-zinc-100 mb-12 text-center md:text-left">
+            Perché <span className="text-violet-500">Elle</span>Code?
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
             {features.map((feature) => {
               const Icon = feature.icon;
 
               return (
                 <article
                   key={feature.id}
-                  className="group p-6 bg-zinc-800/50 border border-zinc-700/50 rounded-xl hover:border-violet-500/50 transition-all duration-300 hover:-translate-y-1"
+                  className="flex items-start gap-4 group"
                 >
-                  <Icon className="w-8 h-8 text-violet-500 mb-4" />
-                  <h3 className="text-xl font-semibold text-zinc-100 mb-2">
-                    {feature.title}
-                  </h3>
-                  <p className="text-zinc-400">{feature.description}</p>
+                  <div className="p-3 rounded-lg  border   text-violet-400 border-violet-500/30 bg-violet-600/10 transition-all duration-300 shrink-0">
+                    <Icon size={20} />
+                  </div>
+                  <div>
+                    <h4 className="text-zinc-100 font-bold mb-1 group-hover:text-violet-100 transition-colors">
+                      {feature.title}
+                    </h4>
+                    <p className="text-zinc-400 text-sm leading-relaxed">
+                      {feature.description}
+                    </p>
+                  </div>
                 </article>
               );
             })}
