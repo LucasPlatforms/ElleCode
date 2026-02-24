@@ -12,17 +12,17 @@ export default function Hero() {
             Soluzioni web veloci e concrete
           </span>
         </div>
-        <div className="opacity-0 animate-fade-in-up">
-          <h1 className="text-4xl md:text-7xl font-bold text-zinc-100 mb-6 leading-tight">
-            La tua attività online con soluzioni web semplici e solide
-            <span className="text-violet-500">.</span>
-          </h1>
 
-          <p className="text-xl md:text-2xl text-zinc-400 mb-12 max-w-3xl mx-auto leading-relaxed">
-            Soluzioni web chiavi in mano: prestazioni elevate, cura del
-            dettaglio e gestione scadenze.
-          </p>
-        </div>
+        <h1 className="text-4xl md:text-7xl font-bold text-zinc-100 mb-6 leading-tight">
+          La tua attività online con soluzioni web semplici e solide
+          <span className="text-violet-500">.</span>
+        </h1>
+
+        <p className="text-xl md:text-2xl text-zinc-400 mb-12 max-w-3xl mx-auto leading-relaxed">
+          Soluzioni web chiavi in mano: prestazioni elevate, cura del dettaglio
+          e gestione scadenze.
+        </p>
+
         <div className="opacity-0 animate-fade-in-up animate-stagger-1 mt-8">
           <Link
             href="#contatti"
