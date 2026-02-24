@@ -22,7 +22,7 @@ const projects = [
     solution:
       "Sviluppo di un sito web performante con focus su velocità di caricamento, ottimizzazione SEO locale e form di contatto ottimizzato per conversioni.",
     result:
-      "Sito velocissimo con ottima visibilità sui motori di ricerca locali e aumento delle richieste di informazioni.",
+      "Sito veloce con ottima visibilità sui motori di ricerca locali e implemento delle richieste di informazioni.",
     tags: ["Performance", "SEO Locale", "Lead Generation"],
     link: "https://www.sevenhead.it/",
   },
@@ -34,7 +34,7 @@ const projects = [
     solution:
       "Creazione di un sito mobile-first multilingua (EN/IT/ES/DE) con estrema attenzione alla velocità su dispositivi mobili e SEO internazionale.",
     result:
-      "Esperienza utente eccellente su smartphone, visibilità internazionale e aumento delle prenotazioni da turisti.",
+      "Esperienza utente eccellente su smartphone e visibilità internazionale.",
     tags: ["Mobile-First", "Multilingua", "Turismo"],
     link: "https://al-posto-giusto.vercel.app/",
   },
