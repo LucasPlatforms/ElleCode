@@ -79,16 +79,16 @@ export default function About() {
               </p>
             </div>
           </div>
-          <div>
+          {/*<div>
             <Image
-              src="/about-img.svg"
+              src="/about-img.webp"
               alt="Illustrazione Sezione Chi Siamo"
               width={341}
               height={305}
               priority
               className="md:h-150 w-auto "
             />
-          </div>
+          </div>*/}
         </div>
         <div className="md:pt-16 mt-16 md:border-t md:border-zinc-800/50">
           <h3 className="text-2xl font-bold text-zinc-100 mb-12 text-center md:text-left">
