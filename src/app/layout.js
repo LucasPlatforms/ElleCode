@@ -1,6 +1,6 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { SpeedInsights } from "@vercel/speed-insights/next";
+//import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -14,12 +14,10 @@ export const metadata = {
   manifest: "/site.webmanifest",
   icons: {
     icon: [
-      { url: '/favicon.ico', sizes: 'any' },
-      { url: '/icon.svg', type: 'image/svg+xml' } // Se usi il PNG, metti '/icon.png' e 'image/png'
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.svg", type: "image/svg+xml" }, // Se usi il PNG, metti '/icon.png' e 'image/png'
     ],
-    apple: [
-      { url: '/apple-icon.png' }
-    ],
+    apple: [{ url: "/apple-icon.png" }],
   },
 };
 
@@ -31,7 +29,7 @@ export default function RootLayout({ children }) {
         suppressHydrationWarning
       >
         {children}
-        <SpeedInsights />
+        {/*<SpeedInsights />*/}
       </body>
     </html>
   );
