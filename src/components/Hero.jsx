@@ -1,5 +1,4 @@
 "use client";
-import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, Zap } from "lucide-react";
 
@@ -14,16 +13,7 @@ export default function Hero() {
             Soluzioni web veloci e concrete
           </span>
         </div>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }} // Stato iniziale: invisibile e 40px più in basso
-          animate={{ opacity: 1, y: 0 }} // Stato finale: visibile e posizione originale
-          transition={{
-            duration: 0.5,
-            delay: 0.1, // Aspetta mezzo secondo per far caricare il testo prima
-            type: "spring", // Effetto molla
-            stiffness: 100,
-          }}
-        >
+        <div className="opacity-0 animate-fade-in-up">
           <h1 className="text-4xl md:text-7xl font-bold text-zinc-100 mb-6 leading-tight">
             La tua attività online con soluzioni web semplici e solide
             <span className="text-violet-500">.</span>
@@ -33,17 +23,8 @@ export default function Hero() {
             Soluzioni web chiavi in mano: prestazioni elevate, cura del
             dettaglio e gestione scadenze.
           </p>
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.5,
-            delay: 0.3,
-            type: "spring",
-            stiffness: 100,
-          }}
-        >
+        </div>
+        <div className="opacity-0 animate-fade-in-up animate-stagger-1 mt-8">
           <Link
             href="#contatti"
             aria-label="Vai alla sezione contatti per parlare del tuo progetto"
@@ -52,7 +33,7 @@ export default function Hero() {
             Parliamo del tuo progetto
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </Link>
-        </motion.div>
+        </div>
       </div>
 
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce pointer-events-none">

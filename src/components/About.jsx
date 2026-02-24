@@ -1,5 +1,4 @@
 "use client";
-import { motion } from "framer-motion";
 import {
   Zap,
   TrendingUp,
@@ -41,30 +40,6 @@ const features = [
     description: "Un pacchetto chiavi in mano e trasparente.",
   },
 ];
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15, // Ogni blocco figlio aspetta 0.15s dal precedente
-      delayChildren: 0.2, // Pausa iniziale prima di far partire la danza
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      type: "spring",
-      stiffness: 80,
-      damping: 15,
-    },
-  },
-};
 
 export default function About() {
   return (
@@ -121,23 +96,13 @@ export default function About() {
             Perché <span className="text-violet-500">Elle</span>Code?
           </h3>
 
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-          >
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
             {features.map((feature) => {
               const Icon = feature.icon;
 
               return (
                 <article key={feature.id} className="">
-                  <motion.div
-                    key={feature.id}
-                    variants={itemVariants}
-                    className="flex items-start gap-4 group"
-                  >
+                  <div className="flex items-start gap-4 group">
                     <div className="p-3 rounded-lg  border   text-violet-400 border-violet-500/30 bg-violet-600/10 transition-all duration-300 shrink-0">
                       <Icon size={20} />
                     </div>
@@ -149,11 +114,11 @@ export default function About() {
                         {feature.description}
                       </p>
                     </div>
-                  </motion.div>
+                  </div>
                 </article>
               );
             })}
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
