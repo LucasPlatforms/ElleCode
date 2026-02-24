@@ -55,10 +55,10 @@ export default function Navbar() {
     <nav
       ref={navRef}
       // 3. Usa height fissa invece di cambiare padding (py-4/py-8) per evitare il Reflow
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 will-change-transform ${
+      className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 will-change-transform h-20 ${
         isScrolled
-          ? "bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800/50 h-16"
-          : "bg-transparent h-24"
+          ? "bg-zinc-950/80 backdrop-blur-md  border-zinc-800/50 "
+          : "bg-transparent"
       }`}
     >
       <div className="max-w-6xl mx-auto px-8 h-full flex justify-between items-center">
