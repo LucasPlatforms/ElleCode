@@ -31,7 +31,7 @@ export default function Navbar() {
   return (
     <nav
       ref={navRef}
-      className="fixed top-0 left-0 w-full z-50 h-20 bg-zinc-950 border-b border-zinc-800/50"
+      className="fixed top-0 left-0 w-full z-50 h-20 bg-zinc-950/90 backdrop-blur border-b border-zinc-800/50"
     >
       {/* HEADER: Aggiunto relative z-20 per tenerlo SEMPRE sopra la tendina del menu */}
       <div className="max-w-6xl mx-auto px-8 h-full flex justify-between items-center relative z-20">
