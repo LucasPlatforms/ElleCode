@@ -1,34 +1,15 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navRef = useRef(null);
 
-  // 1. Ottimizzazione Scroll con RequestAnimationFrame (evita Reflow forzati)
-  useEffect(() => {
-    let ticking = false;
-
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          setIsScrolled(window.scrollY > 20);
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // 2. Click Outside (ottimizzato)
+  // Click Outside per chiudere il menu mobile
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (
@@ -41,10 +22,6 @@ export default function Navbar() {
     };
     if (mobileMenuOpen) {
       document.addEventListener("mousedown", handleClickOutside);
-      // Blocca lo scroll del corpo quando il menu è aperto (opzionale ma consigliato)
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
     }
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [mobileMenuOpen]);
@@ -54,24 +31,19 @@ export default function Navbar() {
   return (
     <nav
       ref={navRef}
-      // 3. Usa height fissa invece di cambiare padding (py-4/py-8) per evitare il Reflow
-      className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 will-change-transform h-20 ${
-        isScrolled
-          ? "bg-zinc-950/80 backdrop-blur-md  border-zinc-800/50 "
-          : "bg-transparent"
-      }`}
+      className="fixed top-0 left-0 w-full z-50 h-20 bg-zinc-950/90 backdrop-blur-md border-b border-zinc-800/50"
     >
-      <div className="max-w-6xl mx-auto px-8 h-full flex justify-between items-center">
+      {/* HEADER: Aggiunto relative z-20 per tenerlo SEMPRE sopra la tendina del menu */}
+      <div className="max-w-6xl mx-auto px-8 h-full flex justify-between items-center relative z-20">
         <Link
           href="/"
           aria-label="Torna all'inizio della pagina"
-          className="relative z-50"
           onClick={handleLinkClick}
         >
           <Image
             src="/ellecode-logo.svg"
             alt="Logo Ellecode"
-            width={150} // Dimensioni esatte per prevenire Layout Shift
+            width={150}
             height={24}
             priority
             className="h-6 w-auto transition-opacity hover:opacity-80"
@@ -99,7 +71,7 @@ export default function Navbar() {
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden relative z-50 p-2 text-zinc-300"
+          className="md:hidden p-2 text-zinc-300"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Toggle menu"
         >
@@ -107,27 +79,52 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* 4. MENU MOBILE: Animato con Opacity e Y-Translate invece di Height */}
+      {/* MENU MOBILE: Ripristinato al TUO design originale (tendina sotto la navbar)
+        Ma ottimizzato usando translateY e opacity invece di max-height 
+      */}
       <div
-        className={`md:hidden fixed inset-0 bg-zinc-950/98 backdrop-blur-xl transition-all duration-300 ease-in-out ${
+        className={`md:hidden absolute top-full left-0 w-full bg-zinc-900 border-b border-zinc-800 px-6 py-4 shadow-xl transition-all duration-300 ease-in-out -z-10 ${
           mobileMenuOpen
             ? "opacity-100 pointer-events-auto translate-y-0"
             : "opacity-0 pointer-events-none -translate-y-4"
         }`}
       >
-        <div className="flex flex-col items-center justify-center h-full gap-8 text-xl font-semibold">
-          {["Chi Siamo", "Servizi", "Progetti", "FAQ", "Contatti"].map(
-            (item) => (
-              <Link
-                key={item}
-                href={`#${item.toLowerCase().replace(" ", "-")}`}
-                onClick={handleLinkClick}
-                className="text-zinc-100 hover:text-violet-500 transition-colors"
-              >
-                {item}
-              </Link>
-            ),
-          )}
+        <div className="flex flex-col gap-4">
+          <Link
+            href="#chi-siamo"
+            onClick={handleLinkClick}
+            className="text-left text-zinc-300 py-2 border-b border-zinc-800"
+          >
+            Chi Siamo
+          </Link>
+          <Link
+            href="#servizi"
+            onClick={handleLinkClick}
+            className="text-left text-zinc-300 py-2 border-b border-zinc-800"
+          >
+            Servizi
+          </Link>
+          <Link
+            href="#progetti"
+            onClick={handleLinkClick}
+            className="text-left text-zinc-300 py-2 border-b border-zinc-800"
+          >
+            Progetti
+          </Link>
+          <Link
+            href="#faq"
+            onClick={handleLinkClick}
+            className="text-left text-zinc-300 py-2 border-b border-zinc-800"
+          >
+            FAQ
+          </Link>
+          <Link
+            href="#contatti"
+            onClick={handleLinkClick}
+            className="text-left text-violet-400 py-2 font-medium"
+          >
+            Contattami
+          </Link>
         </div>
       </div>
     </nav>
