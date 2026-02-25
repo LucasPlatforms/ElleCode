@@ -5,18 +5,44 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 
-const navLinks = [
-  { label: "Chi Siamo", href: "#chi-siamo" },
-  { label: "Servizi", href: "#servizi" },
-  { label: "Progetti", href: "#progetti" },
-  { label: "FAQ", href: "#faq" },
+const NAV_LINKS = [
+  { label: "Chi Siamo", href: "chi-siamo" },
+  { label: "Servizi", href: "servizi" },
+  { label: "Progetti", href: "progetti" },
+  { label: "FAQ", href: "faq" },
 ];
+
+/*
+  SMOOTH SCROLL VIA JS — questa è la correzione principale per il flash bianco.
+  
+  Il problema: scroll-behavior: smooth nel CSS fa sì che il browser crei layer
+  di compositing separati per ogni sezione durante l'animazione di scroll.
+  Quando incontra bg diversi (zinc-950 / zinc-900) li ridisegna uno alla volta
+  causando il "flash bianco".
+  
+  La soluzione: scrollIntoView({ behavior: 'smooth' }) via JS opera sul
+  main thread di layout senza creare layer separati di compositing,
+  eliminando il flash.
+*/
+function smoothScrollTo(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.scrollIntoView({ behavior: "smooth", block: "start" });
+}
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const navRef = useRef(null);
 
-  // Chiude il menu al click esterno
+  // Effetto blur/shadow della navbar allo scroll
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Click outside per chiudere il menu mobile
   useEffect(() => {
     if (!mobileMenuOpen) return;
     const handleClickOutside = (e) => {
@@ -28,7 +54,7 @@ export default function Navbar() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [mobileMenuOpen]);
 
-  // Blocca lo scroll del body quando il menu mobile è aperto
+  // Blocca scroll del body quando menu mobile è aperto
   useEffect(() => {
     document.body.style.overflow = mobileMenuOpen ? "hidden" : "";
     return () => {
@@ -36,39 +62,36 @@ export default function Navbar() {
     };
   }, [mobileMenuOpen]);
 
-  /**
-   * FIX PRINCIPALE: smooth scroll via JS invece di CSS.
-   * Il CSS `scroll-behavior: smooth` applicato globalmente causa
-   * "blocchi bianchi" su alcuni browser perché combina male con
-   * position:fixed, min-h-dvh e overflow. Gestirlo via JS è più
-   * affidabile e permette di compensare l'altezza della navbar.
-   */
-  const handleAnchorClick = useCallback((e, href) => {
+  const handleNavClick = useCallback((e, href) => {
     e.preventDefault();
     setMobileMenuOpen(false);
+    smoothScrollTo(href);
+  }, []);
 
-    const targetId = href.replace("#", "");
-    const target = document.getElementById(targetId);
-    if (!target) return;
-
-    const navbarHeight = 80; // h-20 = 80px
-    const targetTop =
-      target.getBoundingClientRect().top + window.scrollY - navbarHeight;
-
-    window.scrollTo({ top: targetTop, behavior: "smooth" });
+  const toggleMenu = useCallback(() => {
+    setMobileMenuOpen((prev) => !prev);
   }, []);
 
   return (
     <nav
       ref={navRef}
-      className="fixed top-0 left-0 w-full z-50 h-20 bg-zinc-950/90 backdrop-blur border-b border-zinc-800/50"
+      role="navigation"
       aria-label="Navigazione principale"
+      className={`fixed top-0 left-0 w-full z-50 h-20 border-b transition-all duration-300 ${
+        scrolled
+          ? "bg-zinc-950/95 backdrop-blur-md border-zinc-800/80 shadow-lg shadow-black/20"
+          : "bg-zinc-950/90 backdrop-blur border-zinc-800/50"
+      }`}
     >
       <div className="max-w-6xl mx-auto px-8 h-full flex justify-between items-center relative z-20">
-        <Link
-          href="#hero"
-          aria-label="Torna all'inizio della pagina"
-          onClick={(e) => handleAnchorClick(e, "#hero")}
+        {/* Logo */}
+        <a
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+          aria-label="Torna all'inizio della pagina — Ellecode"
         >
           <Image
             src="/ellecode-logo.svg"
@@ -78,24 +101,28 @@ export default function Navbar() {
             priority
             className="h-6 w-auto transition-opacity hover:opacity-80"
           />
-        </Link>
+        </a>
 
         {/* Desktop Links */}
-        <div className="hidden md:flex gap-8 items-center text-sm font-medium text-zinc-400">
-          {navLinks.map((item) => (
+        <div
+          className="hidden md:flex gap-8 items-center text-sm font-medium text-zinc-400"
+          role="list"
+        >
+          {NAV_LINKS.map(({ label, href }) => (
             <a
-              key={item.label}
-              href={item.href}
-              onClick={(e) => handleAnchorClick(e, item.href)}
-              className="hover:text-zinc-100 transition-colors"
+              key={href}
+              href={`#${href}`}
+              role="listitem"
+              onClick={(e) => handleNavClick(e, href)}
+              className="hover:text-zinc-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950 rounded-sm"
             >
-              {item.label}
+              {label}
             </a>
           ))}
           <a
             href="#contatti"
-            onClick={(e) => handleAnchorClick(e, "#contatti")}
-            className="bg-violet-600 text-white px-5 py-2 rounded-full hover:bg-violet-500 transition-all shadow-lg shadow-violet-500/20"
+            onClick={(e) => handleNavClick(e, "contatti")}
+            className="bg-violet-600 text-white px-5 py-2 rounded-full hover:bg-violet-500 transition-all shadow-lg shadow-violet-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
           >
             Contattami
           </a>
@@ -103,41 +130,47 @@ export default function Navbar() {
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden p-2 text-zinc-300"
-          onClick={() => setMobileMenuOpen((v) => !v)}
+          className="md:hidden p-2 text-zinc-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 rounded-md"
+          onClick={toggleMenu}
           aria-label={mobileMenuOpen ? "Chiudi menu" : "Apri menu"}
           aria-expanded={mobileMenuOpen}
           aria-controls="mobile-menu"
         >
-          {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          {mobileMenuOpen ? (
+            <X size={28} aria-hidden="true" />
+          ) : (
+            <Menu size={28} aria-hidden="true" />
+          )}
         </button>
       </div>
 
       {/* Menu Mobile */}
       <div
         id="mobile-menu"
+        role="dialog"
+        aria-label="Menu di navigazione mobile"
+        aria-modal="false"
         className={`md:hidden absolute top-full left-0 w-full bg-zinc-900 border-b border-zinc-800 px-6 py-4 shadow-xl transition-all duration-300 ease-in-out -z-10 ${
           mobileMenuOpen
             ? "opacity-100 pointer-events-auto translate-y-0"
             : "opacity-0 pointer-events-none -translate-y-4"
         }`}
-        aria-hidden={!mobileMenuOpen}
       >
-        <div className="flex flex-col gap-4">
-          {navLinks.map((item) => (
+        <div className="flex flex-col gap-1">
+          {NAV_LINKS.map(({ label, href }) => (
             <a
-              key={item.label}
-              href={item.href}
-              onClick={(e) => handleAnchorClick(e, item.href)}
-              className="text-left text-zinc-300 py-2 border-b border-zinc-800"
+              key={href}
+              href={`#${href}`}
+              onClick={(e) => handleNavClick(e, href)}
+              className="text-left text-zinc-300 py-3 px-2 border-b border-zinc-800 hover:text-zinc-100 transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500"
             >
-              {item.label}
+              {label}
             </a>
           ))}
           <a
             href="#contatti"
-            onClick={(e) => handleAnchorClick(e, "#contatti")}
-            className="text-left text-violet-400 py-2 font-medium"
+            onClick={(e) => handleNavClick(e, "contatti")}
+            className="text-left text-violet-400 py-3 px-2 font-semibold hover:text-violet-300 transition-colors"
           >
             Contattami
           </a>

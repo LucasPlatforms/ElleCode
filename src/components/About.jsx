@@ -42,11 +42,18 @@ const features = [
 
 export default function About() {
   return (
-    <section id="chi-siamo" className="py-24 px-6 bg-zinc-900">
+    <section
+      id="chi-siamo"
+      className="scroll-anchor py-24 px-6 bg-zinc-900"
+      aria-labelledby="about-heading"
+    >
       <div className="max-w-6xl mx-auto">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="text-4xl md:text-5xl font-bold text-zinc-100 mb-6">
+            <h2
+              id="about-heading"
+              className="text-4xl md:text-5xl font-bold text-zinc-100 mb-6"
+            >
               Chi Siamo
               <span className="text-violet-500" aria-hidden="true">
                 .
@@ -57,10 +64,9 @@ export default function About() {
               <p>
                 <span className="text-violet-400 font-semibold">Elle</span>Code
                 è un progetto TEMA Telecomunicazioni. Nasce dal mondo delle
-                telecomunicazioni e dell&apos;assistenza sul campo. Questa
-                esperienza ci permette di capire subito i problemi reali di
-                un&apos;azienda e di risolverli con strumenti digitali solidi,
-                senza intoppi tecnici.
+                telecomunicazioni e dell'assistenza sul campo. Questa esperienza
+                ci permette di capire subito i problemi reali di un'azienda e di
+                risolverli con strumenti digitali solidi, senza intoppi tecnici.
               </p>
               <p>
                 Il nostro valore aggiunto è la{" "}
@@ -71,7 +77,7 @@ export default function About() {
                 in soluzioni digitali concrete.
               </p>
               <p>
-                Il nostro punto di forza è l&apos;
+                Il nostro punto di forza è l'
                 <span className="text-violet-400 font-semibold">
                   affidabilità
                 </span>
@@ -84,13 +90,19 @@ export default function About() {
             </div>
           </div>
 
-          <div>
+          {/* 
+            Image ottimizzata: sizes aiuta il browser a scegliere 
+            la risoluzione giusta, riducendo il payload su mobile.
+          */}
+          <div className="flex justify-center md:justify-end">
             <Image
               src="/about-img.svg"
-              alt="Illustrazione sezione Chi Siamo: collaborazione e affidabilità"
+              alt="Illustrazione team Ellecode"
               width={341}
               height={305}
               className="md:h-150 w-auto"
+              loading="lazy"
+              sizes="(max-width: 768px) 280px, 341px"
             />
           </div>
         </div>
@@ -100,14 +112,20 @@ export default function About() {
             Perché <span className="text-violet-500">Elle</span>Code?
           </h3>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
+          <ul
+            className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10"
+            role="list"
+          >
             {features.map((feature) => {
               const Icon = feature.icon;
               return (
-                <article key={feature.id}>
+                <li key={feature.id}>
                   <div className="flex items-start gap-4 group">
-                    <div className="p-3 rounded-lg border text-violet-400 border-violet-500/30 bg-violet-600/10 transition-all duration-300 shrink-0">
-                      <Icon size={20} aria-hidden="true" />
+                    <div
+                      className="p-3 rounded-lg border text-violet-400 border-violet-500/30 bg-violet-600/10 transition-all duration-300 shrink-0"
+                      aria-hidden="true"
+                    >
+                      <Icon size={20} />
                     </div>
                     <div>
                       <h4 className="text-zinc-100 font-bold mb-1 group-hover:text-violet-100 transition-colors">
@@ -118,10 +136,10 @@ export default function About() {
                       </p>
                     </div>
                   </div>
-                </article>
+                </li>
               );
             })}
-          </div>
+          </ul>
         </div>
       </div>
     </section>

@@ -1,39 +1,65 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #09090b;
+  --foreground: #ededed;
 }
 
 @layer base {
   html {
-    scrollbar-color: #7c3aed #000000;
+    scrollbar-color: #7c3aed #09090b;
     scrollbar-width: thin;
-    /* scroll-behavior rimosso dal CSS — viene gestito via JS per compatibilità */
+    /*
+      RIMOSSO scroll-behavior: smooth da qui.
+      Il flash bianco durante lo scroll tra sezioni è causato proprio
+      dall'interazione tra smooth scroll CSS nativo e i layer di
+      compositing separati che il browser crea per ogni sezione con
+      background diverso. Gestiamo lo smooth scroll via JS (Navbar).
+    */
   }
 
-  /* Offset per la navbar fixed su tutti gli anchor target */
-  [id] {
-    scroll-margin-top: 80px;
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* 
+      Crea un unico stacking context per tutto il body.
+      Previene il flash bianco tra sezioni durante lo scroll.
+    */
+    isolation: isolate;
+    /* Sfondo di fallback sempre visibile, mai bianco */
+    background-color: #09090b;
+  }
+
+  /*
+    CHIAVE ANTI-FLASH: contain: paint su ogni sezione garantisce
+    che il browser non invalidi i layer adiacenti durante lo scroll.
+    Questo elimina il "white flash" tra sezioni con bg-zinc-950 e bg-zinc-900.
+  */
+  section {
+    contain: paint;
+    will-change: auto;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #09090b;
     --foreground: #ededed;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
-}
-
 @layer utilities {
   .animate-fade-in-up {
-    animation: fadeInUp 0.8s ease-out both; /* "both" risolve il flash bianco: mantiene opacity:0 prima dell'inizio e opacity:1 dopo la fine */
+    animation: fadeInUp 0.8s ease-out forwards;
   }
 
   .animate-stagger-1 {
@@ -52,5 +78,13 @@ body {
       opacity: 1;
       transform: translateY(0);
     }
+  }
+
+  /*
+    scroll-margin-top su tutte le sezioni target degli anchor link.
+    Compensa l'altezza della navbar fissa (h-20 = 80px).
+  */
+  .scroll-anchor {
+    scroll-margin-top: 5rem;
   }
 }

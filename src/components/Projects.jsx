@@ -42,100 +42,132 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section id="progetti" className="py-24 px-6 bg-zinc-900">
+    <section
+      id="progetti"
+      className="scroll-anchor py-24 px-6 bg-zinc-900"
+      aria-labelledby="projects-heading"
+    >
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-zinc-100 mb-6">
-            Progetti<span className="text-violet-500">.</span>
+          <h2
+            id="projects-heading"
+            className="text-4xl md:text-5xl font-bold text-zinc-100 mb-6"
+          >
+            Progetti
+            <span className="text-violet-500" aria-hidden="true">
+              .
+            </span>
           </h2>
           <p className="text-xl text-zinc-400 max-w-2xl mx-auto">
             Problemi reali, soluzioni concrete, risultati misurabili.
           </p>
         </div>
 
-        <div className="space-y-8">
-          {projects.map((project, index) => (
-            <article
-              key={index}
-              className="group bg-zinc-950/50 border border-zinc-800 rounded-xl p-8 hover:border-violet-500/50 transition-all duration-300 hover:-translate-y-1"
-            >
-              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
-                <div>
-                  <h3 className="text-2xl font-bold text-zinc-100 mb-2 flex items-center gap-3">
-                    {project.link !== "#" ? (
-                      <Link
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-3 hover:text-violet-400 transition-colors"
-                        aria-label={`Visita il progetto ${project.name}`}
+        {/* 
+          Usato <ul>/<li> per semantica corretta su lista di progetti.
+          Key per nome progetto invece di indice numerico.
+        */}
+        <ul className="space-y-8" role="list">
+          {projects.map((project) => (
+            <li key={project.name}>
+              <article className="group bg-zinc-950/50 border border-zinc-800 rounded-xl p-8 hover:border-violet-500/50 transition-all duration-300 hover:-translate-y-1">
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
+                  <div>
+                    <h3 className="text-2xl font-bold text-zinc-100 mb-2">
+                      {project.link !== "#" ? (
+                        <Link
+                          href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-3 hover:text-violet-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 rounded-sm"
+                          aria-label={`Visita il progetto ${project.name} (apre in nuova scheda)`}
+                        >
+                          {project.name}
+                          <ExternalLink
+                            className="w-5 h-5 text-violet-500 opacity-0 group-hover:opacity-100 transition-opacity"
+                            aria-hidden="true"
+                          />
+                        </Link>
+                      ) : (
+                        <span className="inline-flex items-center gap-3">
+                          {project.name}
+                          <ExternalLink
+                            className="w-5 h-5 text-zinc-600"
+                            aria-hidden="true"
+                          />
+                        </span>
+                      )}
+                    </h3>
+                    <p className="text-violet-400 font-medium">
+                      {project.role}
+                    </p>
+                  </div>
+
+                  <ul
+                    className="flex flex-wrap gap-2"
+                    aria-label={`Tag progetto ${project.name}`}
+                  >
+                    {project.tags.map((tag) => (
+                      <li
+                        key={tag}
+                        className="px-3 py-1 bg-violet-500/10 border border-violet-500/20 rounded-full text-xs font-medium text-violet-300"
                       >
-                        {project.name}
-                        <ExternalLink className="w-5 h-5 text-violet-500 opacity-0 group-hover:opacity-100 transition-opacity" />
-                      </Link>
-                    ) : (
-                      <>
-                        {project.name}
-
-                        <ExternalLink className="w-5 h-5 text-zinc-600" />
-                      </>
-                    )}
-                  </h3>
-                  <p className="text-violet-400 font-medium">{project.role}</p>
+                        {tag}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
 
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag, i) => (
-                    <span
-                      key={i}
-                      className="px-3 py-1 bg-violet-500/10 border border-violet-500/20 rounded-full text-xs font-medium text-violet-300"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="grid md:grid-cols-3 gap-6">
-                <div>
-                  <div className="flex items-center gap-2 mb-3">
-                    <div className="w-2 h-2 bg-red-500 rounded-full" />
-                    <h4 className="text-sm font-semibold text-zinc-300 uppercase tracking-wide">
-                      Problema
-                    </h4>
+                <div className="grid md:grid-cols-3 gap-6">
+                  <div>
+                    <div className="flex items-center gap-2 mb-3">
+                      <div
+                        className="w-2 h-2 bg-red-500 rounded-full"
+                        aria-hidden="true"
+                      />
+                      <h4 className="text-sm font-semibold text-zinc-300 uppercase tracking-wide">
+                        Problema
+                      </h4>
+                    </div>
+                    <p className="text-zinc-400 leading-relaxed">
+                      {project.problem}
+                    </p>
                   </div>
-                  <p className="text-zinc-400 leading-relaxed">
-                    {project.problem}
-                  </p>
-                </div>
 
-                <div>
-                  <div className="flex items-center gap-2 mb-3">
-                    <div className="w-2 h-2 bg-yellow-500 rounded-full" />
-                    <h4 className="text-sm font-semibold text-zinc-300 uppercase tracking-wide">
-                      Soluzione
-                    </h4>
+                  <div>
+                    <div className="flex items-center gap-2 mb-3">
+                      <div
+                        className="w-2 h-2 bg-yellow-500 rounded-full"
+                        aria-hidden="true"
+                      />
+                      <h4 className="text-sm font-semibold text-zinc-300 uppercase tracking-wide">
+                        Soluzione
+                      </h4>
+                    </div>
+                    <p className="text-zinc-400 leading-relaxed">
+                      {project.solution}
+                    </p>
                   </div>
-                  <p className="text-zinc-400 leading-relaxed">
-                    {project.solution}
-                  </p>
-                </div>
 
-                <div>
-                  <div className="flex items-center gap-2 mb-3">
-                    <CheckCircle2 className="w-4 h-4 text-green-500" />
-                    <h4 className="text-sm font-semibold text-zinc-300 uppercase tracking-wide">
-                      Risultato
-                    </h4>
+                  <div>
+                    <div className="flex items-center gap-2 mb-3">
+                      <CheckCircle2
+                        className="w-4 h-4 text-green-500"
+                        aria-hidden="true"
+                      />
+                      <h4 className="text-sm font-semibold text-zinc-300 uppercase tracking-wide">
+                        Risultato
+                      </h4>
+                    </div>
+                    <p className="text-zinc-400 leading-relaxed">
+                      {project.result}
+                    </p>
                   </div>
-                  <p className="text-zinc-400 leading-relaxed">
-                    {project.result}
-                  </p>
                 </div>
-              </div>
-            </article>
+              </article>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );
