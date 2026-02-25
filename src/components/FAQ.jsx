@@ -16,10 +16,6 @@ const faqs = [
     q: "Cosa devo fare io concretamente per iniziare il progetto?",
     a: 'Il tuo compito è solo quello di raccontarci la tua attività. Al resto pensiamo noi con la nostra formula "Chiavi in mano". Ti guideremo nella scelta dei contenuti e delle immagini necessarie. Una volta approvata la strategia, gestiamo noi tutta la parte tecnica, la configurazione dei server e la messa online, consegnandoti il lavoro finito e pronto a correre.',
   },
-  {
-    q: "Chi gestisce la fatturazione?",
-    a: "Per la parte amministrativa e fiscale ci appoggiamo alla nostra struttura aziendale consolidata nel settore tech. Riceverai una fattura elettronica regolare da TEMA TELECOMUNICAZIONI, con tutta la trasparenza e la garanzia di una società reale e presente sul territorio.",
-  },
 ];
 
 // Schema JSON-LD per FAQ Rich Snippets — generato fuori dal componente
