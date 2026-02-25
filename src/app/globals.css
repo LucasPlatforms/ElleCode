@@ -9,7 +9,12 @@
   html {
     scrollbar-color: #7c3aed #000000;
     scrollbar-width: thin;
-    scroll-behavior: smooth;
+    /* scroll-behavior rimosso dal CSS — viene gestito via JS per compatibilità */
+  }
+
+  /* Offset per la navbar fixed su tutti gli anchor target */
+  [id] {
+    scroll-margin-top: 80px;
   }
 }
 
@@ -28,7 +33,7 @@ body {
 
 @layer utilities {
   .animate-fade-in-up {
-    animation: fadeInUp 0.8s ease-out forwards;
+    animation: fadeInUp 0.8s ease-out both; /* "both" risolve il flash bianco: mantiene opacity:0 prima dell'inizio e opacity:1 dopo la fine */
   }
 
   .animate-stagger-1 {
