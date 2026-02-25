@@ -24,10 +24,17 @@ const NAV_LINKS = [
   main thread di layout senza creare layer separati di compositing,
   eliminando il flash.
 */
+const NAVBAR_HEIGHT = 80; // h-20 = 80px
+
 function smoothScrollTo(id) {
   const el = document.getElementById(id);
   if (!el) return;
-  el.scrollIntoView({ behavior: "smooth", block: "start" });
+  /*
+    Calcolo manuale della posizione assoluta per evitare il bug con contain:paint
+    che fa fermare scrollIntoView prima del target.
+  */
+  const top = el.getBoundingClientRect().top + window.scrollY - NAVBAR_HEIGHT;
+  window.scrollTo({ top, behavior: "smooth" });
 }
 
 export default function Navbar() {
@@ -77,11 +84,12 @@ export default function Navbar() {
       ref={navRef}
       role="navigation"
       aria-label="Navigazione principale"
-      className={`fixed top-0 left-0 w-full z-50 h-20 border-b transition-all duration-300 ${
-        scrolled
-          ? "bg-zinc-950/95 backdrop-blur-md border-zinc-800/80 shadow-lg shadow-black/20"
-          : "bg-zinc-950/90 backdrop-blur border-zinc-800/50"
-      }`}
+      style={{
+        backgroundColor: scrolled ? "#0C0911" : "transparent",
+        borderBottomColor: scrolled ? "rgba(39,39,42,0.5)" : "transparent",
+        boxShadow: scrolled ? "0 4px 24px 0 rgba(0,0,0,0.35)" : "none",
+      }}
+      className="fixed top-0 left-0 w-full z-50 h-20 border-b transition-[background-color,border-color,box-shadow] duration-500 ease-in-out"
     >
       <div className="max-w-6xl mx-auto px-8 h-full flex justify-between items-center relative z-20">
         {/* Logo */}
