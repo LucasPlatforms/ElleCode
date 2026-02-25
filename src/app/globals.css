@@ -58,7 +58,17 @@
 }
 
 @layer utilities {
+  /*
+    FIX SCROLL POSIZIONE PRIMA VOLTA:
+    Usiamo visibility: hidden invece di opacity: 0 come stato iniziale.
+    Con opacity: 0 il browser calcola scrollIntoView PRIMA che l'animazione
+    finisca, trovando un layout "più corto" e fermando lo scroll troppo presto.
+    Con visibility: hidden l'elemento occupa il suo spazio nel layout fin
+    dall'inizio — il DOM è stabile, scrollIntoView calcola la posizione corretta
+    anche al primissimo click.
+  */
   .animate-fade-in-up {
+    visibility: hidden;
     animation: fadeInUp 0.8s ease-out forwards;
   }
 
@@ -71,10 +81,12 @@
 
   @keyframes fadeInUp {
     from {
+      visibility: visible;
       opacity: 0;
       transform: translateY(20px);
     }
     to {
+      visibility: visible;
       opacity: 1;
       transform: translateY(0);
     }

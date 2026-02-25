@@ -47,7 +47,7 @@ export default function Hero() {
           e gestione scadenze.
         </p>
 
-        <div className="opacity-0 animate-fade-in-up animate-stagger-1 mt-8">
+        <div className="animate-fade-in-up animate-stagger-1 mt-8">
           <SmoothScrollLink
             href="contatti"
             aria-label="Vai alla sezione contatti per parlare del tuo progetto"
