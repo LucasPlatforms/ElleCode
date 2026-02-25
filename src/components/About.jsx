@@ -101,7 +101,7 @@ export default function About() {
               width={341}
               height={305}
               className="md:h-150 w-auto"
-              loading="lazy"
+              priority
               sizes="(max-width: 768px) 280px, 341px"
             />
           </div>
