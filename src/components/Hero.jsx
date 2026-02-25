@@ -1,10 +1,15 @@
-import Link from "next/link";
 import { ArrowRight, Zap } from "lucide-react";
+import SmoothScrollLink from "../components/SmoothscrollLink";
 
 /*
-  NOTA: questo componente è un Server Component (nessun "use client").
-  Lo smooth scroll degli anchor link è gestito dalla Navbar via JS.
-  Il flash bianco è risolto in globals.css con contain: paint sulle section.
+  Hero è un Server Component — non ha "use client".
+  SmoothScrollLink è un Client Component separato: Next.js gestisce
+  correttamente questa composizione (server + client boundary).
+  
+  PERCHÉ SmoothScrollLink invece di <Link href="#contatti">?
+  - Next.js Link su hash anchor fa router.push che può causare re-render e flash
+  - Con scroll-behavior CSS rimosso (fix white flash), serve scrollIntoView via JS
+  - SmoothScrollLink è riutilizzabile ovunque nel progetto
 */
 
 export default function Hero() {
@@ -14,7 +19,7 @@ export default function Hero() {
       className="scroll-anchor min-h-dvh bg-linear-to-b from-zinc-950 to-zinc-900 flex items-center justify-center px-6 relative overflow-hidden"
       aria-label="Sezione introduttiva"
     >
-      {/* Glow decorativo — pointer-events-none e will-change per GPU layer dedicato */}
+      {/* Glow decorativo */}
       <div
         className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[300px] h-[300px] md:w-[800px] md:h-[500px] bg-violet-600/30 blur-3xl md:blur-[120px] rounded-full pointer-events-none"
         aria-hidden="true"
@@ -30,10 +35,6 @@ export default function Hero() {
           </span>
         </div>
 
-        {/*
-          H1 ottimizzato SEO: parola chiave principale "siti web" in posizione
-          prominente, senza sacrificare la leggibilità.
-        */}
         <h1 className="text-4xl md:text-7xl font-bold text-zinc-100 mb-6 leading-tight">
           Siti web semplici, solidi e pronti a far crescere la tua attività
           <span className="text-violet-500" aria-hidden="true">
@@ -47,12 +48,8 @@ export default function Hero() {
         </p>
 
         <div className="opacity-0 animate-fade-in-up animate-stagger-1 mt-8">
-          {/*
-            Link ancora verso #contatti — lo smooth scroll è gestito dalla Navbar.
-            Qui usiamo href diretto che funziona anche senza JS (progressive enhancement).
-          */}
-          <Link
-            href="#contatti"
+          <SmoothScrollLink
+            href="contatti"
             aria-label="Vai alla sezione contatti per parlare del tuo progetto"
             className="group inline-flex items-center gap-3 px-8 py-4 bg-violet-600 hover:bg-violet-500 text-white font-semibold rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-violet-500/50 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
           >
@@ -61,7 +58,7 @@ export default function Hero() {
               className="w-5 h-5 group-hover:translate-x-1 transition-transform"
               aria-hidden="true"
             />
-          </Link>
+          </SmoothScrollLink>
         </div>
       </div>
 
