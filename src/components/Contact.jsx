@@ -1,52 +1,32 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useRef, useState } from "react";
 import { Mail, Github, Linkedin, Send } from "lucide-react";
-
-/*
-  NOTA SUL FORM:
-  Attualmente il form usa un handleSubmit client-side vuoto.
-  Per la produzione, hai due opzioni:
-  
-  1. Server Action Next.js (raccomandato — zero JS client-side per il form):
-     Crea un file `app/actions.js` con:
-       "use server"
-       export async function sendContactForm(formData) { ... }
-     Poi passa l'action al form: <form action={sendContactForm}>
-  
-  2. EmailJS (client-side, no server):
-     npm install @emailjs/browser
-     import emailjs from "@emailjs/browser"
-     Nel handleSubmit: emailjs.sendForm(serviceId, templateId, formRef.current, publicKey)
-*/
-
-const INITIAL_STATE = { status: "idle", message: "" };
+import emailjs from "@emailjs/browser";
 
 export default function Contact() {
-  const [formState, setFormState] = useState(INITIAL_STATE);
+  const form = useRef();
+  const [status, setStatus] = useState(""); // "" | "sending" | "success" | "error"
 
-  const handleSubmit = useCallback(async (e) => {
+  const sendEmail = (e) => {
     e.preventDefault();
-    setFormState({ status: "loading", message: "" });
+    setStatus("sending");
 
-    // Placeholder — sostituisci con EmailJS o Server Action
-    try {
-      await new Promise((res) => setTimeout(res, 800)); // simulazione
-      setFormState({
-        status: "success",
-        message: "Messaggio inviato! Ti rispondo entro 24 ore.",
+    emailjs
+      .sendForm(
+        "service_avzlpgo",
+        "template_h9kbyf7",
+        form.current,
+        "M_QTOGm7GRp-8EMuE",
+      )
+      .then(() => {
+        setStatus("success");
+        form.current.reset();
+      })
+      .catch(() => {
+        setStatus("error");
       });
-      e.target.reset();
-    } catch {
-      setFormState({
-        status: "error",
-        message:
-          "Errore nell'invio. Riprova o scrivi direttamente a info@ellecode.it",
-      });
-    }
-  }, []);
-
-  const isLoading = formState.status === "loading";
+  };
 
   return (
     <section
@@ -75,9 +55,10 @@ export default function Contact() {
         <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-8 md:p-12">
           <form
             className="space-y-6"
-            onSubmit={handleSubmit}
+            onSubmit={sendEmail}
             noValidate
             aria-label="Modulo di contatto"
+            ref={form}
           >
             <div className="grid md:grid-cols-2 gap-6">
               <div>
@@ -99,7 +80,7 @@ export default function Contact() {
                   name="name"
                   required
                   autoComplete="name"
-                  disabled={isLoading}
+                  disabled={status === "sending"}
                   className="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 rounded-lg text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all disabled:opacity-60 disabled:cursor-not-allowed"
                   placeholder="Mario Rossi"
                 />
@@ -124,7 +105,7 @@ export default function Contact() {
                   name="email"
                   required
                   autoComplete="email"
-                  disabled={isLoading}
+                  disabled={status === "sending"}
                   className="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 rounded-lg text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all disabled:opacity-60 disabled:cursor-not-allowed"
                   placeholder="mario@azienda.it"
                 />
@@ -149,39 +130,44 @@ export default function Contact() {
                 name="message"
                 required
                 rows={6}
-                disabled={isLoading}
+                disabled={status === "sending"}
                 className="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 rounded-lg text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all resize-none disabled:opacity-60 disabled:cursor-not-allowed"
                 placeholder="Raccontami del tuo progetto..."
               />
             </div>
 
-            {/* Feedback di stato form */}
-            {formState.status === "success" && (
+            {/* Feedback di stato */}
+            {status === "success" && (
               <p
                 role="alert"
                 className="text-sm text-green-400 bg-green-400/10 border border-green-400/20 rounded-lg px-4 py-3"
               >
-                ✓ {formState.message}
+                ✓ Messaggio inviato! Ti risponderò il prima possibile.
               </p>
             )}
-            {formState.status === "error" && (
+            {status === "error" && (
               <p
                 role="alert"
                 className="text-sm text-red-400 bg-red-400/10 border border-red-400/20 rounded-lg px-4 py-3"
               >
-                ✕ {formState.message}
+                ✕ Qualcosa è andato storto. Riprova o scrivimi direttamente a
+                info@ellecode.it
               </p>
             )}
 
             <button
               type="submit"
-              disabled={isLoading}
+              disabled={status === "sending"}
               aria-label="Invia il messaggio di contatto"
               className="group w-full md:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-violet-600 hover:bg-violet-500 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-violet-500/50 hover:-translate-y-1 disabled:hover:translate-y-0 disabled:hover:shadow-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-900"
             >
-              {isLoading ? "Invio in corso…" : "Invia messaggio"}
+              {status === "sending" ? "Invio in corso..." : "Invia messaggio"}
               <Send
-                className={`w-5 h-5 ${isLoading ? "animate-pulse" : "group-hover:translate-x-1 transition-transform"}`}
+                className={`w-5 h-5 ${
+                  status === "sending"
+                    ? "animate-pulse"
+                    : "group-hover:translate-x-1 transition-transform"
+                }`}
                 aria-hidden="true"
               />
             </button>
