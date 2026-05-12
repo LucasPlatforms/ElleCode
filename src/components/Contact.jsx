@@ -163,11 +163,10 @@ export default function Contact() {
             >
               {status === "sending" ? "Invio in corso..." : "Invia messaggio"}
               <Send
-                className={`w-5 h-5 ${
-                  status === "sending"
-                    ? "animate-pulse"
-                    : "group-hover:translate-x-1 transition-transform"
-                }`}
+                className={`w-5 h-5 ${status === "sending"
+                  ? "animate-pulse"
+                  : "group-hover:translate-x-1 transition-transform"
+                  }`}
                 aria-hidden="true"
               />
             </button>
@@ -188,7 +187,7 @@ export default function Contact() {
 
               <div className="flex items-center gap-4">
                 <a
-                  href="https://github.com"
+                  href="https://github.com/LucasPlatforms/"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Profilo GitHub di Ellecode (apre in nuova scheda)"
@@ -219,7 +218,13 @@ export default function Contact() {
         {/* Footer */}
         <footer className="mt-16 text-center" aria-label="Footer">
           <p className="text-zinc-500 text-sm">
-            Progetto supportato da TEMA Telecomunicazioni — P.IVA 09330850158
+            ElleCode - un brand di TEMA Telecomunicazioni S.r.l.
+          </p>
+          <p className="text-zinc-500 text-sm">
+            Via C. Girardengo 1/4 20161 Milano (MI)
+          </p>
+          <p className="text-zinc-500 text-sm">
+            P.IVA 09330850158
           </p>
           <p className="text-zinc-600 text-xs mt-2">
             <span aria-label="Copyright">©</span> {new Date().getFullYear()}{" "}
