@@ -62,30 +62,21 @@ export default function About() {
 
             <div className="space-y-6 text-lg text-zinc-300 leading-relaxed">
               <p>
-                <span className="text-violet-400 font-semibold">Elle</span>Code
-                è un progetto TEMA Telecomunicazioni. Nasce dal mondo delle
-                telecomunicazioni e dell'assistenza sul campo. Questa esperienza
-                ci permette di capire subito i problemi reali di un'azienda e di
-                risolverli con strumenti digitali solidi, senza intoppi tecnici.
+                <span className="text-violet-400 font-semibold">Elle</span><strong>Code{" "}</strong>
+                trasforma le aziende in realtà digitali. Lo facciamo con metodo e, soprattutto, con una visione chiara: la tecnologia deve semplificare il lavoro.
               </p>
               <p>
-                Il nostro valore aggiunto è la{" "}
-                <span className="text-violet-400 font-semibold">
-                  capacità di ascolto
-                </span>
-                . Comprendiamo le dinamiche della tua attività e le trasformiamo
-                in soluzioni digitali concrete.
+
+                Non progettiamo soluzioni generiche. Ogni portale, ogni sistema che sviluppiamo è il risultato di un'<span className="text-violet-400 font-semibold">
+                  analisi e ascolto
+                </span> delle dinamiche della tua organizzazione.
               </p>
               <p>
-                Il nostro punto di forza è l'
-                <span className="text-violet-400 font-semibold">
-                  affidabilità
-                </span>
-                . In un settore dove spesso è difficile ricevere assistenza
-                tempestiva, noi offriamo la sicurezza di un referente sempre
-                presente e pronto a intervenire. Costruiamo strumenti che
-                funzionano e restiamo al tuo fianco per assicurarci che
-                continuino a farlo.
+
+
+                Il nostro impegno non si esaurisce al rilascio. Garantiamo un <span className="text-violet-400 font-semibold">
+                  presidio continuativo
+                </span>: un referente tecnico dedicato, reattivo e sempre disponibile a intervenire.
               </p>
             </div>
           </div>
