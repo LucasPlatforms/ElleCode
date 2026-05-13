@@ -132,7 +132,7 @@ export default function Contact() {
                 rows={6}
                 disabled={status === "sending"}
                 className="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 rounded-lg text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all resize-none disabled:opacity-60 disabled:cursor-not-allowed"
-                placeholder="Raccontami del tuo progetto..."
+                placeholder="Racconta il tuo progetto..."
               />
             </div>
 
@@ -163,10 +163,11 @@ export default function Contact() {
             >
               {status === "sending" ? "Invio in corso..." : "Invia messaggio"}
               <Send
-                className={`w-5 h-5 ${status === "sending"
-                  ? "animate-pulse"
-                  : "group-hover:translate-x-1 transition-transform"
-                  }`}
+                className={`w-5 h-5 ${
+                  status === "sending"
+                    ? "animate-pulse"
+                    : "group-hover:translate-x-1 transition-transform"
+                }`}
                 aria-hidden="true"
               />
             </button>
@@ -223,9 +224,7 @@ export default function Contact() {
           <p className="text-zinc-500 text-sm">
             Via C. Girardengo 1/4 20161 Milano (MI)
           </p>
-          <p className="text-zinc-500 text-sm">
-            P.IVA 09330850158
-          </p>
+          <p className="text-zinc-500 text-sm">P.IVA 09330850158</p>
           <p className="text-zinc-600 text-xs mt-2">
             <span aria-label="Copyright">©</span> {new Date().getFullYear()}{" "}
             Tutti i diritti riservati

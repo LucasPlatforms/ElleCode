@@ -21,7 +21,7 @@ const organizationSchema = {
     name: "TEMA Telecomunicazioni",
     taxID: "09330850158",
   },
-  sameAs: ["https://github.com", "https://linkedin.com"],
+  sameAs: ["https://github.com/LucasPlatforms"],
 };
 
 export default function Home() {

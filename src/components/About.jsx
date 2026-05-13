@@ -11,32 +11,36 @@ const features = [
   {
     id: 1,
     icon: Zap,
-    title: "Velocità Record",
-    description: "Siti istantanei su ogni dispositivo.",
+    title: "Veloce su ogni dispositivo",
+    description:
+      "Il tuo sito carica in pochi secondi, funziona bene su smartphone, tablet e desktop. Nessun compromesso.",
   },
   {
     id: 2,
     icon: TrendingUp,
-    title: "SEO al Massimo",
-    description: "Ottimizzati per scalare le ricerche Google.",
+    title: "Costruito per essere trovato",
+    description:
+      "Struttura tecnica ottimizzata per i motori di ricerca fin dall'inizio, per dare al tuo sito le basi giuste per crescere nel tempo.",
   },
   {
     id: 3,
     icon: CalendarCheck,
-    title: "Scadenze Zero Pensieri",
-    description: "Gestisco io server, domini e rinnovi.",
+    title: "Tutto gestito da noi",
+    description: "Server, dominio, rinnovi: ci pensiamo noi.",
   },
   {
     id: 4,
     icon: ShieldCheck,
     title: "Monitoraggio 24/7",
-    description: "Controllo costante che tutto sia online.",
+    description:
+      "Monitoraggio continuo del sito, con intervento immediato a ogni anomalia.",
   },
   {
     id: 5,
     icon: Package,
-    title: "Tutto Incluso",
-    description: "Un pacchetto chiavi in mano e trasparente.",
+    title: "Soluzione chiavi in mano",
+    description:
+      "Un pacchetto completo e trasparente, dal primo incontro all'assistenza post-lancio.",
   },
 ];
 
@@ -62,21 +66,30 @@ export default function About() {
 
             <div className="space-y-6 text-lg text-zinc-300 leading-relaxed">
               <p>
-                <span className="text-violet-400 font-semibold">Elle</span><strong>Code{" "}</strong>
-                trasforma le aziende in realtà digitali. Lo facciamo con metodo e, soprattutto, con una visione chiara: la tecnologia deve semplificare il lavoro.
+                <span className="text-violet-400 font-semibold">Elle</span>
+                <strong>Code </strong>
+                realizza siti web vetrina professionali per chi vuole essere
+                presente online senza pensarci. Lavoriamo con professionisti,
+                studi e attività locali che hanno bisogno di un sito che
+                funziona — costruito bene, consegnato nei tempi, gestito nel
+                tempo.
               </p>
               <p>
-
-                Non progettiamo soluzioni generiche. Ogni portale, ogni sistema che sviluppiamo è il risultato di un'<span className="text-violet-400 font-semibold">
-                  analisi e ascolto
-                </span> delle dinamiche della tua organizzazione.
+                Non partiamo da template preconfezionati. Ogni sito nasce da una{" "}
+                <span className="text-violet-400 font-semibold">
+                  conversazione reale
+                </span>
+                : ascoltiamo come lavori, cosa offri e a chi ti rivolgi, poi
+                costruiamo qualcosa che ti rappresenta davvero. analisi e
+                ascolto
               </p>
               <p>
-
-
-                Il nostro impegno non si esaurisce al rilascio. Garantiamo un <span className="text-violet-400 font-semibold">
-                  presidio continuativo
-                </span>: un referente tecnico dedicato, reattivo e sempre disponibile a intervenire.
+                E quando il sito è online,{" "}
+                <span className="text-violet-400 font-semibold">
+                  restiamo presenti
+                </span>
+                . Un referente dedicato, raggiungibile, pronto a intervenire.
+                Perché il nostro lavoro non finisce al momento del lancio.
               </p>
             </div>
           </div>

@@ -132,7 +132,7 @@ export default function Navbar() {
             onClick={(e) => handleNavClick(e, "contatti")}
             className="bg-violet-600 text-white px-5 py-2 rounded-full hover:bg-violet-500 transition-all shadow-lg shadow-violet-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
           >
-            Contattami
+            Contattaci
           </a>
         </div>
 

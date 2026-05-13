@@ -36,7 +36,8 @@ export default function Hero() {
         </div>
 
         <h1 className="text-4xl md:text-7xl font-bold text-zinc-100 mb-6 leading-tight">
-          La tua attività online con soluzioni web semplici e solide
+          Siti web vetrina per professionisti e attività locali, dal progetto
+          all'assistenza
           <span className="text-violet-500" aria-hidden="true">
             .
           </span>

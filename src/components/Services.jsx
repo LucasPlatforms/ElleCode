@@ -13,46 +13,46 @@ const services = [
     icon: Globe,
     title: "Siti Web Vetrina ad Alte Prestazioni",
     description:
-      "Progettazione di siti veloci e ottimizzati per i motori di ricerca. Perfetti per presentare la tua attività con un design moderno che funziona perfettamente su ogni dispositivo.",
+      "Progettazione di siti veloci, curati nel design e ottimizzati per i motori di ricerca. Perfetti per presentare la tua attività nel modo giusto, su qualsiasi dispositivo.",
   },
   {
     icon: Target,
     title: "Landing Page per Prodotti/Servizi",
     description:
-      "Devi lanciare un nuovo prodotto o una campagna? Sviluppo pagine singole mirate alla conversione e all'acquisizione di contatti, senza distrazioni.",
+      "Una pagina singola, focalizzata e senza distrazioni. Ideale per lanciare un prodotto, una campagna o raccogliere contatti in modo efficace.",
   },
   {
     icon: Sparkles,
-    title: "Restyling Frontend",
+    title: "Restyling di un Sito Esistente",
     description:
-      "Hai un sito che sente il peso degli anni? Ridisegnamo l'interfaccia visiva per renderlo moderno e in linea con i nuovi standard del web, migliorando l'esperienza utente.",
+      "Il tuo sito esiste già ma non ti rappresenta più. Rinnoviamo l'interfaccia per renderla veloce, in linea con i nuovi standard del web e piacevole da usare — senza ripartire da zero.",
   },
 ];
 
 const workflowSteps = [
   {
     icon: Search,
-    title: "Analisi & Strategia",
+    title: "Ascolto e analisi",
     description:
-      "Capiamo le tue necessità e blocchiamo i contenuti. Nessun passo falso iniziale.",
+      "Capiamo la tua attività, il tuo pubblico e cosa deve comunicare il sito.",
   },
   {
     icon: Code2,
-    title: "Sviluppo & Anteprima",
+    title: "Sviluppo e anteprima",
     description:
-      "Vedi il sito crescere in tempo reale su un link privato. Totale trasparenza.",
+      "Lavoriamo su un link privato che puoi seguire in tempo reale. Niente viene pubblicato senza la tua approvazione.",
   },
   {
     icon: Gauge,
-    title: "Ottimizzazione & Test",
+    title: "Test e ottimizzazione",
     description:
-      "Velocità record, controllo SEO e test su ogni dispositivo mobile.",
+      "Prima del lancio verifichiamo velocità, struttura SEO e resa su ogni dispositivo.",
   },
   {
     icon: Rocket,
-    title: "Lancio & Supporto",
+    title: "Lancio e assistenza",
     description:
-      "Messa online e monitoraggio costante. Non ti lascio solo dopo la consegna.",
+      "Messa online e monitoraggio costante. Referente sempre raggiungibile.",
   },
 ];
 
@@ -79,8 +79,7 @@ export default function Services() {
             </span>
           </h2>
           <p className="text-xl text-zinc-400 max-w-2xl mx-auto">
-            Strumenti digitali su misura, con focus su prestazioni e
-            affidabilità.
+            Siti web su misura, con focus su prestazioni e affidabilità.
           </p>
         </div>
 
@@ -123,8 +122,8 @@ export default function Services() {
           </span>
         </h2>
         <p className="text-zinc-400 text-lg max-w-2xl mx-auto">
-          Tempi certi e zero sorprese. Gestisco il progetto in 4 step chiari per
-          non farti perdere tempo.
+          Quattro passaggi chiari e tempi definiti. Gestisco il progetto in 4
+          step chiari.
         </p>
       </div>
 
