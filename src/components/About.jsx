@@ -80,8 +80,7 @@ export default function About() {
                   conversazione reale
                 </span>
                 : ascoltiamo come lavori, cosa offri e a chi ti rivolgi, poi
-                costruiamo qualcosa che ti rappresenta davvero. analisi e
-                ascolto
+                costruiamo qualcosa che ti rappresenta davvero.
               </p>
               <p>
                 E quando il sito è online,{" "}

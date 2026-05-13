@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { Mail, Github, Linkedin, Send } from "lucide-react";
+import { Mail, Github, Send } from "lucide-react";
 import emailjs from "@emailjs/browser";
 
 export default function Contact() {
@@ -195,18 +195,6 @@ export default function Contact() {
                   className="p-3 bg-zinc-800 hover:bg-zinc-700 rounded-lg transition-all hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500"
                 >
                   <Github
-                    className="w-5 h-5 text-zinc-300"
-                    aria-hidden="true"
-                  />
-                </a>
-                <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Profilo LinkedIn di Ellecode (apre in nuova scheda)"
-                  className="p-3 bg-zinc-800 hover:bg-zinc-700 rounded-lg transition-all hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500"
-                >
-                  <Linkedin
                     className="w-5 h-5 text-zinc-300"
                     aria-hidden="true"
                   />

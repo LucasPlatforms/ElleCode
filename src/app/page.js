@@ -22,6 +22,13 @@ const organizationSchema = {
     taxID: "09330850158",
   },
   sameAs: ["https://github.com/LucasPlatforms"],
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Via C. Girardengo 1/4",
+    addressLocality: "Milano",
+    postalCode: "20161",
+    addressCountry: "IT",
+  },
 };
 
 export default function Home() {
